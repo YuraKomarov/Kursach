@@ -15,7 +15,7 @@ use yii\web\Response;
 use backend\models\Gallery;
 use yii\imagine\Image;
 use Imagine\Image\Box;
-use backend\models\Settings;
+use common\models\Settings;
 use yii\helpers\Url;
 use yii\rbac;
 use yii\data\Pagination;
@@ -184,10 +184,20 @@ class SiteController extends Controller
 
        // $model = new Settings();
         $model = Settings::findOne(1);
+        $model->image = UploadedFile::getInstance($model, 'image');
+
+        $path = Yii::getAlias('@backgroundPath');
         if($model->load(Yii::$app->request->post()))
         {
+            $model->image = UploadedFile::getInstance($model, 'image');
+
+
             if($model->save())
             {
+                if($model->image) {
+
+                    $model->uploading($path);
+                }
                 Yii::$app->session->setFlash('success', 'normalno');
                 return $this->refresh();
             }

@@ -17,7 +17,7 @@ Use common\models\NewsLoad;
 use yii\data\Pagination;
 use yii\helpers\Html;
 use yii\web\Request;
-
+use common\models\Settings;
 /**
  * Site controller
  */
@@ -234,13 +234,14 @@ class SiteController extends Controller
 
     public function actionNews(){
 
+        $newsCount = Settings::findOne(1);
         $now = date("Ymd");
         $query = NewsLoad::find()->where(['<=', 'pubday', $now])->orderBy(['pubday' => SORT_DESC]);
         $pages = new Pagination(['totalCount' => $query->count(), 'pagesize' => 6]);
         $posts = $query->offset($pages->offset)
             ->limit($pages->limit)
             ->all();
-        return $this->render('news', compact('posts', 'pages'));
+        return $this->render('news', compact('posts', 'pages', 'newsCount'));
     }
     public function actionGallery(){
 

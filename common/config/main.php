@@ -5,6 +5,7 @@ return [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@uploadPath' => '@frontend/web/upload',
+        '@backgroundPath' => '@frontend/web/css/back.jpg',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
