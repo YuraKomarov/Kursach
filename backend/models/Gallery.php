@@ -21,7 +21,13 @@ class Gallery extends ActiveRecord
         $path = ['dir' => $dir, 'filename' => $filename, 'resdir' => $resdir];
         return $path;
     }
+    public function attributeLabels()
+    {
+        return [
+            'image' => 'Выберите изображение',
 
+        ];
+    }
     public function upload($dir){
         if($this->validate())
         {

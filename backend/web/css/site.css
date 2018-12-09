@@ -3,6 +3,19 @@ body {
     height: 100%;
 }
 
+.galleryPic{
+    margin-top: 25px;
+
+}
+
+.bord{
+    border-radius: 8px;
+}
+
+.galleryInput{
+    margin-top: 20px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
